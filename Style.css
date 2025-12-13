@@ -1,48 +1,62 @@
+/* -------------------------------------- */
+/* --- 1. GLOBAL CSS VARIABLES (ROOT) --- */
+/* -------------------------------------- */
 :root{
-    --Main-Color: #0f4c5c;
-    --Word-Color: #f48c06;
-    --Lists-Color: #bc6c25;
+    --Main-Color: #0f4c5c; /* Main background color */
+    --Word-Color: #f48c06; /* Primary accent/text color */
+    --Lists-Color: #bc6c25; /* Secondary accent color (used for lists/hover) */
     --Link-Color: #007bff;
     --Exclusive-Color: white;
     --Black-Color: black;
 }
 
+/* -------------------------------------- */
+/* --- 2. BASE STYLES & LAYOUT (BODY) --- */
+/* -------------------------------------- */
 body{
     font-family: sans-serif;
     background-color: var(--Main-Color);
 }
 
 main {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Container limit */
+    margin: 0 auto; /* Center content horizontally */
     padding: 0 10px;
 }
 
+/* -------------------------------------- */
+/* --- 3. NAVIGATION (SIDEBAR) STYLES --- */
+/* -------------------------------------- */
+
+/* Used to toggle sidebar state via checkbox trick */
 #Menu{
     display: none;
 }
 
 #Menu:checked ~ #SideBar{
+    /* Shows sidebar when checkbox is checked */
     transform: translateX(0);
 }
 
 .Button{
+    /* Hamburger menu icon */
     top: 10px;
     left: 10px;
     padding: 10px;
     color: var(--Word-Color);
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1001; /* High z-index to stay on top */
     border-radius: 5px;
     font-size: 30px;
     transition: color 0.3s;
 }
 
+/* Base sidebar styles (fixed position expected) */
 #SideBar{
     box-shadow: inset 0px 0px 10px 0 var(--Lists-Color);
     background-color: var(--Word-Color);
     z-index: 1000;
-    transform: translateX(-250px);
+    transform: translateX(-250px); /* Hidden by default (off-screen) */
     transition: transform 0.3s ease;
 }
 
@@ -69,6 +83,7 @@ main {
     background-color: var(--Lists-Color);
 }
 
+/* Specific border-radius handling for first/last links */
 #SideBar a:first-child {
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -80,6 +95,9 @@ main {
     border-bottom-right-radius: 1rem;
 }
 
+/* -------------------------------------- */
+/* --- 4. ME / PRESENTATION SECTION --- */
+/* -------------------------------------- */
 .Me{
     display: flex;
     gap: 6rem;
@@ -87,12 +105,12 @@ main {
     padding: 2rem;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; /* Mobile default: vertical stack */
 }
 
 @media (min-width:768px){
     .Me{
-        flex-direction: row;
+        flex-direction: row; /* Desktop: horizontal layout */
         max-width: 900px;
         margin-left: auto;
         margin-right: auto;
@@ -100,6 +118,7 @@ main {
 }
 
 #Circule{
+    /* Image container for profile picture */
     width: 350px;
     height: 350px;
     border-radius: 50%;
@@ -129,6 +148,9 @@ main {
     color: var(--Exclusive-Color)
 }
 
+/* -------------------------------------- */
+/* --- 5. PROJECTS SECTION --- */
+/* -------------------------------------- */
 .Projects{
     display: flex;
     align-items: center;
@@ -151,7 +173,7 @@ main {
     padding: 0;
     max-width: 900px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
     gap: 3rem;
     justify-content: center;
 }
@@ -180,6 +202,9 @@ main {
                 inset 0px 0px 20px 0 var(--Lists-Color);
 }
 
+/* -------------------------------------- */
+/* --- 6. CONTACT FORM SECTION --- */
+/* -------------------------------------- */
 .Form{
     display: flex;
     flex-direction: column;
@@ -215,7 +240,7 @@ main {
 }
 
 .Form textarea{
-    resize: none;
+    resize: none; /* Prevents user from resizing textarea */
 }
 
 .Form textarea,
@@ -235,6 +260,7 @@ main {
 }
 
 #Buttom{
+    /* Submit button styling */
     cursor: pointer;
     background-color: var(--Exclusive-Color);
     box-shadow: inset 0px 0px 10px 0 var(--Black-Color);
@@ -256,6 +282,7 @@ main {
                 inset 0px 0px 20px 0 var(--Lists-Color);
 }
 
+/* Section dividers/spacers */
 #DivisionP{
     margin: 100px 0;
 }
@@ -268,6 +295,9 @@ main {
     margin: 100px 0;
 }
 
+/* -------------------------------------- */
+/* --- 7. FOOTER SECTION --- */
+/* -------------------------------------- */
 .Footer{
     display: flex;
     flex-wrap: wrap;
@@ -277,6 +307,7 @@ main {
 }
 
 .Faster{
+    /* Footer link/button style */
     font-weight: bold;
     color: var(--Black-Color);
     text-decoration: none;
@@ -304,33 +335,44 @@ main {
     text-align: center;
 }
 
+/* -------------------------------------- */
+/* --- 8. PETS SECTION (GRID LAYOUT) --- */
+/* -------------------------------------- */
 .Title_Pets{
     text-align: center;
     color: var(--Word-Color);
 }
 
-.Pets{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin: 50px auto;
+.Grid{
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-First: Single column default */
+    gap: 2rem;
+    padding-top: 3rem; 
+    width: 80%;
 }
 
-.Pets img{
-    box-shadow: 0px 0px 30px 0 var(--Black-Color);
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+@media (min-width:768px){
+    .Grid{
+        grid-template-columns: repeat(3, 1fr); /* Desktop: Three equal columns */
+    }
+    /* Specific grid placement for large screen layout */
+    .Zeus{
+        grid-column: span 2; /* Zeus spans 2 columns */
+        grid-row: 3 ;
+    }
+    .Sasha{ 
+        grid-column: 3; /* Sasha is in the last column */
+        grid-row: 3;
+    }
+    .Neuma{
+        grid-column: span 3; /* Neuma spans the full 3 columns */
+        grid-row: 2;
+    }
 }
 
-.Pets article{
-    margin-top: 15px;
-    width: 210px;
-}
 
 .Pets_Card{
+    /* Card container styling */
     border-radius: 10px;
     background-color: var(--Exclusive-Color);
     box-shadow: inset 0px 0px 20px 0 var(--Black-Color);
@@ -339,11 +381,45 @@ main {
     flex-direction: column;
     display: flex;
     align-items: center;
-    width: 350px;
+    justify-content: center;
     height: 450px;
     padding-top: 33px;
     margin-top: 0;
     text-align: center;
+}
+
+.Neuma, .Sasha, .Zeus{
+    /* Padding for specific cards */
+    padding: 20px 20px;
+}
+
+.Pets{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px auto;
+}
+
+.Pets img{
+    /* Circular image style */
+    box-shadow: 0px 0px 30px 0 var(--Black-Color);
+    max-width: 100%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Pets_Card .Ind{
+    /* Style for individual/larger images */
+    width: 400px;
+    height: 400px;
+}
+
+.Pets article{
+    margin-top: 15px;
+    width: 100%;
+    padding: 0 15px ;
 }
 
 .Pets_Card:hover{
