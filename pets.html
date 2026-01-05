@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>Pets</title>
 </head>
 <body>
 
-    <input type = "checkbox" id = "Menu" hidden>
-    <label for = "Menu" class = "Button"> &#9776;</label>
+    <nav>
+        <button id="Button">
 
-    <nav id = "SideBar">
-        <a href="index.html">Me</a>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+            </svg>
+
+        </button>
     </nav>
+
+    <aside id="Sidebar">
+        <a href="index.html">Me</a>
+    </aside>
+
+    <div id="Overlay"></div>
 
     <main>
 
